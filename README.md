@@ -10,7 +10,7 @@ run php artisan migrate
 
 run php artisan farm:start
 
-commands 
+commands :
 
 add:animal --name={cow, chicken, ..etc} --product= {milk, egg, ..etc} --max={max amount of product the animal gives} --min={min amount of product} --unit={litres, items ... etc} - add an animal
 
