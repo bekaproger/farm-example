@@ -18,4 +18,4 @@ farm:info - show details about farm
 
 get:products - collect all products from farm
 
-all command should be run using php artisan
+all commands should be run using php artisan
