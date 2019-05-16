@@ -2,24 +2,26 @@
 
 namespace App\Console\Commands;
 
+use App\Animal;
 use App\Services\FarmService;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
-class GetProducts extends Command
+class FarmStart extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'get:products';
+    protected $signature = 'farm:start';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Get products';
+    protected $description = 'Command description';
 
     /**
      * Create a new command instance.
@@ -36,16 +38,13 @@ class GetProducts extends Command
      *
      * @return mixed
      */
-    public function handle(FarmService $service)
+    public function handle( FarmService $service)
     {
-        try{
-            $service->getProducts();
-        }catch (\Exception $e){
-            $this->info($e->getMessage());
-            return;
-        }
+        $service->initializeAnimals();
 
-        $this->info('Collected all products');
+        $this->call('get:products');
+
+        $this->call('farm:info');
 
     }
 }

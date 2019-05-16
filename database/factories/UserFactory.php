@@ -25,3 +25,19 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+
+$factory->define(\App\Product::class, function(Faker $faker){
+    return [
+        'count' => 0
+    ];
+});
+
+$factory->define(\App\Animal::class, function(Faker $faker){
+    return [
+        'name' => 'cow',
+        'product_name' => 'milk',
+        'max_product_count' => 12,
+        'min_product_count' => 8
+    ];
+});

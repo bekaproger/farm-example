@@ -10,6 +10,7 @@ namespace App\Services;
 
 use App\Animal;
 use App\Product;
+use Illuminate\Support\Facades\Artisan;
 
 class FarmService
 {
@@ -34,14 +35,14 @@ class FarmService
 
     public function getProducts()
     {
-        //Getting all animals which were updated more than a minute ago
-        $query_animals =Animal::where('updated_at', '<', now()->subMinute()->toDateTime());
+        //Getting all animals
+        $query_animals =Animal::whereNotNull('name');
         //collection of Animal models
         $animals = $query_animals->get();
 
-        //If we have recently got all products throw exception
+
         if($animals->count() === 0){
-            throw new \Exception('There is no product in the farm!');
+            throw new \Exception('There is no animal in the farm!');
         }
 
         //get an array where the name of the products are keys ['milk' => 0, 'egg' => 0, ....]
@@ -64,5 +65,12 @@ class FarmService
 
         //"update" all animals
         $query_animals->update(['updated_at' => now()->toDateTime()]);
+    }
+
+    public function initializeAnimals()
+    {
+        if(Animal::count() == 0) {
+            Artisan::call('db:seed');
+        }
     }
 }
