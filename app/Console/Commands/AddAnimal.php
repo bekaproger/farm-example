@@ -10,7 +10,7 @@ class AddAnimal extends Command
 
     protected $command_options = [
         'name' => 'The name of the animal',
-        'product_name' => 'The name of its product ',
+        'product' => 'The name of its product ',
         'max' => 'Max number of product the animal can make',
         'min' => 'Min number of product the animal makes',
     ];
@@ -71,7 +71,7 @@ class AddAnimal extends Command
             $error = 'Please supply these arguments:' . PHP_EOL;
 
             foreach ($options as $key => $val){
-                $error .= $key . ':' . $val;
+                $error .= $key . ':' . $val . PHP_EOL;
             }
 
             $this->error($error);
